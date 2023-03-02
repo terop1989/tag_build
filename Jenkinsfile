@@ -12,7 +12,7 @@ node {
         DockerImageTag=tag_number
 
         stage('Build Docker Image') {
-            withCredentials([usernamePassword(credentialsId: 'dockerhub_ykozhin', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+            withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
                 sh """
                     docker login ${DockerRepositoryAddress} -u $DOCKER_USER -p $DOCKER_PASSWORD
                     docker build -t ${DockerRepositoryAddress}/${DOCKER_USER}/${DockerImageName}:${DockerImageTag} .
